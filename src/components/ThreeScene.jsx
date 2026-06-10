@@ -29,7 +29,8 @@ const ThreeScene = () => {
         // --- Chargement du modèle GLB ---
         const loadModelAsync = async () => {
             try {
-                const gltf = await loadModel('/favicon-3d.glb', scene);
+                const modelPath = new URL('/favicon-3d.glb', import.meta.url).href.replace(import.meta.url, import.meta.env.BASE_URL);
+                const gltf = await loadModel(import.meta.env.BASE_URL + 'favicon-3d.glb', scene);
 
                 if (gltf.scene) {
                     // On stocke le modèle pour pouvoir le disposer au cleanup

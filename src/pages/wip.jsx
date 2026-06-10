@@ -6,7 +6,7 @@ import SocialLinks from '../components/SocialLinks';
 import ContactModal from '../components/ContactModal';
 
 // Import css
-import '/src/styles/wip.css';
+import '../styles/wip.css';
 
 const WIP = () => {
     const [showContact, setShowContact] = useState(false);
