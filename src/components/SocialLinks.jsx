@@ -5,6 +5,7 @@ import githubIcon from '/src/assets/github-logo.svg';
 import linkedinIcon from '/src/assets/linkedin-logo.png';
 import contactIcon from '/src/assets/email-logo.svg';
 import oldPortfolioIcon from '/src/assets/old-portfolio.png';
+import cvFile from '/src/assets/CV - LE CLAIRE Victor.pdf';
 
 const LINKS = [
     {
@@ -25,6 +26,13 @@ const LINKS = [
         icon: linkedinIcon,
         label: 'LinkedIn',
     },
+    {
+        id: 'cv',
+        href: cvFile,
+        icon: contactIcon,
+        label: 'CV',
+        download: 'CV - LE CLAIRE Victor.pdf',
+    },
 ];
 
 const SocialLinks = ({ onContactClick }) => {
@@ -32,9 +40,15 @@ const SocialLinks = ({ onContactClick }) => {
         <div className="wip-links-container">
             {/* Text links section */}
             <div className="wip-links">
-                {LINKS.map(({ id, href, icon, label }) => (
+                {LINKS.map(({ id, href, icon, label, download }) => (
                     <div key={id} className={`wip-link wip-${id}`}>
-                        <a href={href} target="_blank" rel="noopener noreferrer" className="wip-link-content">
+                        <a
+                            href={href}
+                            {...(download
+                                ? { download }
+                                : { target: '_blank', rel: 'noopener noreferrer' })}
+                            className="wip-link-content"
+                        >
                             <span className="wip-link-text">{label}</span>
                         </a>
                     </div>
