@@ -80,6 +80,10 @@
     animation-delay: 1.2s;
 }
 
+.wip-cv {
+    animation-delay: 1.4s;
+}
+
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -104,7 +108,7 @@
 
 /* Section Contact — séparée visuellement par un trait fin, dans le même groupe */
 .wip-contact-section {
-    animation: fadeIn 0.6s ease-out 1.4s both;
+    animation: fadeIn 0.6s ease-out 1.6s both;
     margin-top: 20px;
     padding-top: 20px;
     border-top: 1px solid color-mix(in srgb, var(--dark) 15%, transparent);
@@ -124,6 +128,11 @@
     align-items: center;
     font-size: 0.85rem;
     transition: background 0.2s;
+}
+
+.wip-contact-btn:focus-visible {
+    outline: 2px solid var(--dark);
+    outline-offset: 2px;
 }
 
 .wip-contact-btn:hover {
@@ -256,7 +265,7 @@
 
     .contact-popup {
         padding: 32px 24px;
-        width: calc(100% - 32px);
+        width: 80%;
         max-width: none;
     }
 
