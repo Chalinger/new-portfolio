@@ -26,28 +26,112 @@
     animation: fadeIn 0.6s ease-out 0.5s both;
 }
 
-/* Conteneur principal des liens — plus de gap géant */
-.wip-links-container {
+/* Conteneur centré du panneau */
+.wip-content_container {
     margin-top: 40px;
     display: flex;
+    justify-content: center;
+}
+
+/* Panneau unique : SocialLinks + MyWorks, 2 colonnes de largeur égale */
+.wip-panel {
+    animation: fadeIn 0.6s ease-out 0.8s both;
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    border: 1px solid color-mix(in srgb, var(--dark) 15%, transparent);
+    max-width: 560px;
+}
+
+/* Colonne du panneau — tops alignés, largeurs égales */
+.wip-panel-col {
+    flex: 1 1 0;
+    min-width: 0;
+    padding: 28px 32px;
+    display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     gap: 0;
+}
+
+/* Trait de séparation entre les deux colonnes */
+.wip-panel-col + .wip-panel-col {
+    border-left: 1px solid color-mix(in srgb, var(--dark) 15%, transparent);
+}
+
+/* Titre commun aux deux colonnes — même structure des deux côtés */
+.wip-panel-title {
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--dark);
+    margin: 0 0 16px;
+}
+
+.my-works {
+    margin-top: 0;
+}
+
+.my-works-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.my-work-item {
+    display: block;
+    text-decoration: none;
+    color: var(--dark);
+    padding: 14px 0;
+    border-bottom: 1px solid color-mix(in srgb, var(--dark) 10%, transparent);
+    transition: opacity 0.2s;
+}
+
+.my-work-item:last-child {
+    border-bottom: none;
+}
+
+.my-work-item:hover {
+    opacity: 0.7;
+    background: color-mix(in srgb, var(--dark) 5%, transparent);
+}
+
+.my-work-item:hover .my-work-title {
+    text-decoration: underline;
+}
+
+.my-work-title {
+    font-size: 0.85rem;
+    font-weight: 500;
+    margin: 0 0 4px;
+}
+
+.my-work-description {
+    font-size: 0.75rem;
+    margin: 0;
+    color: var(--gray, #666);
+}
+
+/* Colonne des liens dans le panneau */
+.wip-links-container {
+    margin-top: 0;
 }
 
 /* Liens empilés verticalement, tap targets suffisants */
 .wip-links {
+    width: 100%;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     gap: 0;
 }
 
 .wip-link {
     animation: fadeIn 0.6s ease-out both;
     width: 100%;
-    display: flex;
-    justify-content: center;
+    display: block;
 }
 
 /* Tap target ≥ 44px (WCAG 2.5.5), underline au hover */
@@ -58,7 +142,7 @@
     align-items: center;
     justify-content: center;
     min-height: 44px;
-    padding: 0 32px;
+    padding: 0;
     font-size: 0.85rem;
     transition: opacity 0.2s;
 }
@@ -66,6 +150,7 @@
 .wip-link-content:hover {
     text-decoration: underline;
     opacity: 0.7;
+    background: color-mix(in srgb, var(--dark) 5%, transparent);
 }
 
 .wip-github {
@@ -109,14 +194,20 @@
 /* Section Contact — séparée visuellement par un trait fin, dans le même groupe */
 .wip-contact-section {
     animation: fadeIn 0.6s ease-out 1.6s both;
+    width: 100%;
     margin-top: 20px;
     padding-top: 20px;
     border-top: 1px solid color-mix(in srgb, var(--dark) 15%, transparent);
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
 }
 
 /* Contact Button */
+.wip-contact-section {
+    display: flex;
+    justify-content: center;
+}
+
 .wip-contact-btn {
     all: unset;
     padding: 12px 24px;
@@ -261,6 +352,23 @@
 @media (max-width: 768px) {
     .wip {
         padding: 60px 24px;
+    }
+
+    /* Empilement vertical : MyWorks passe sous SocialLinks */
+    .wip-content_container {
+        width: 100%;
+    }
+
+    .wip-panel {
+        flex-direction: column;
+        width: 100%;
+        max-width: 380px;
+    }
+
+    /* Le trait de séparation passe au-dessus de la 2e colonne */
+    .wip-panel-col + .wip-panel-col {
+        border-left: none;
+        border-top: 1px solid color-mix(in srgb, var(--dark) 15%, transparent);
     }
 
     .contact-popup {

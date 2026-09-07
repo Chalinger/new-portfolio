@@ -37,7 +37,8 @@ const LINKS = [
 
 const SocialLinks = ({ onContactClick }) => {
     return (
-        <div className="wip-links-container">
+        <div className="wip-panel-col wip-links-container">
+            <h2 className="wip-panel-title">About me</h2>
             {/* Text links section */}
             <div className="wip-links">
                 {LINKS.map(({ id, href, icon, label, download }) => (
