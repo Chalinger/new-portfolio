@@ -1,0 +1,37 @@
+/* =============================================
+   Fond interactif fluide (canvas WebGL plein écran)
+   ============================================= */
+
+.fluid-background {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+
+    /* Le fond ne bloque jamais les clics ni le scroll */
+    pointer-events: none;
+
+    /* Apparition douce pour éviter un flash au chargement */
+    animation: fluidFadeIn 1.2s ease-out both;
+}
+
+.fluid-background canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+/* Quand le fond WebGL est actif, on masque le fond CSS de secours */
+.has-fluid-bg body::before,
+.has-fluid-bg body::after {
+    display: none;
+}
+
+@keyframes fluidFadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
