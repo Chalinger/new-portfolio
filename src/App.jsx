@@ -1,6 +1,7 @@
 import './App.css'
 
 //Import components
+import FluidBackground from './components/FluidBackground';
 
 // Import pages
 import Home from './pages/home';
@@ -10,6 +11,7 @@ import Home from './pages/home';
 function App() {
   return (
     <div className="app">
+        <FluidBackground />
         <Home />
     </div>
   )
