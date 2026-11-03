@@ -1,0 +1,139 @@
+/* =============================================
+   Panneau latéral droit : nav + autres liens
+   ============================================= */
+
+.side-panel {
+    --panel-bg: color-mix(in srgb, var(--dark) 5%, transparent);
+    --separator-gap: 42px;
+
+    position: fixed;
+    top: 50%;
+    right: 124px;
+    transform: translateY(-50%);
+    z-index: 10;
+
+    width: 431px;
+
+    /* Réduction calculée dans SidePanel.jsx pour tenir dans l'écran.
+       Origine en haut : combiné au translateY(-50%), le panneau reste centré. */
+    scale: var(--panel-scale, 1);
+    transform-origin: right top;
+
+    font-family: var(--font-mono);
+    color: var(--dark);
+
+    animation: sidePanelFadeIn 0.6s ease-out 0.2s both;
+}
+
+.side-panel-separator {
+    margin: var(--separator-gap) 0;
+    border: none;
+    border-top: 1px solid var(--gray);
+}
+
+/* Autres liens
+   Chaque élément a une taille fixe : la hauteur de la boîte en découle
+   (et non l'inverse), comme pour la nav-tree. */
+.other-links {
+    --pad-y: 16px;
+    --pad-x: 16px;
+    --title-size: 0.75rem;
+    --title-line: 20px;
+    --link-size: 0.675rem;
+    --link-line: 14px;
+    --sep-height: 6px;
+    --btn-size: 0.625rem;
+    --btn-height: 44px;
+    --gap: 38px;
+
+    box-sizing: border-box;
+    height: calc(var(--pad-y) * 2 + var(--title-line) + var(--gap) + var(--link-line) + var(--gap) + var(--btn-height));
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--gap);
+    padding: var(--pad-y) var(--pad-x);
+    background: var(--panel-bg);
+    backdrop-filter: blur(6px);
+}
+
+.other-links-title {
+    margin: 0;
+    font-size: var(--title-size);
+    line-height: var(--title-line);
+    font-weight: 700;
+}
+
+.other-links-list {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    align-self: stretch;
+    height: var(--link-line);
+}
+
+.other-links-link {
+    color: var(--dark);
+    font-size: var(--link-size);
+    line-height: var(--link-line);
+    padding: 12px 28px;
+    font-weight: 700;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    transition: opacity 0.2s;
+}
+
+.other-links-link:hover {
+    opacity: 0.6;
+}
+
+.other-links-link:focus-visible {
+    outline: 2px solid var(--dark);
+    outline-offset: 2px;
+}
+
+/* Petit trait vertical entre deux liens */
+.other-links-sep {
+    width: 1px;
+    height: var(--sep-height);
+    background: var(--dark);
+}
+
+.other-links .contact-btn {
+    box-sizing: border-box;
+    height: var(--btn-height);
+    min-height: 0;
+    padding: 0 20px;
+    font-size: var(--btn-size);
+    background: color-mix(in srgb, var(--dark) 85%, transparent);
+}
+
+.other-links .contact-btn:hover {
+    background: var(--gray);
+}
+
+@keyframes sidePanelFadeIn {
+    from {
+        opacity: 0;
+        transform: translate(10px, -50%);
+    }
+
+    to {
+        opacity: 1;
+        transform: translate(0, -50%);
+    }
+}
+
+@media (max-width: 768px) {
+    .side-panel {
+        --separator-gap: 24px;
+
+        right: 16px;
+        width: auto;
+        max-width: calc(100vw - 32px);
+    }
+
+    .other-links-list {
+        gap: 12px;
+    }
+}

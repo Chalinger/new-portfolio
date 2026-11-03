@@ -1,39 +1,10 @@
 import React from 'react';
 
-// Import images
-import githubIcon from '/src/assets/github-logo.svg';
-import linkedinIcon from '/src/assets/linkedin-logo.png';
-import contactIcon from '/src/assets/email-logo.svg';
-import oldPortfolioIcon from '/src/assets/old-portfolio.png';
-import cvFile from '/src/assets/CV - LE CLAIRE Victor.pdf';
+// Import components
+import ContactButton from './ContactButton';
 
-const LINKS = [
-    {
-        id: 'github',
-        href: 'https://github.com/Chalinger',
-        icon: githubIcon,
-        label: 'GitHub',
-    },
-    {
-        id: 'old_portfolio',
-        href: 'https://chalinger.github.io/Portfolio-Victor-LE-CLAIRE/',
-        icon: oldPortfolioIcon,
-        label: 'Old Portfolio',
-    },
-    {
-        id: 'linkedin',
-        href: 'https://www.linkedin.com/in/victor-le-claire-95a5872ba/',
-        icon: linkedinIcon,
-        label: 'LinkedIn',
-    },
-    {
-        id: 'cv',
-        href: cvFile,
-        icon: contactIcon,
-        label: 'CV',
-        download: 'CV - LE CLAIRE Victor.pdf',
-    },
-];
+// Import data
+import { LINKS } from '../data/links';
 
 const SocialLinks = ({ onContactClick }) => {
     return (
@@ -41,7 +12,7 @@ const SocialLinks = ({ onContactClick }) => {
             <h2 className="wip-panel-title">About me</h2>
             {/* Text links section */}
             <div className="wip-links">
-                {LINKS.map(({ id, href, icon, label, download }) => (
+                {LINKS.map(({ id, href, label, download }) => (
                     <div key={id} className={`wip-link wip-${id}`}>
                         <a
                             href={href}
@@ -57,13 +28,7 @@ const SocialLinks = ({ onContactClick }) => {
             </div>
             {/* Contact button section */}
             <div className="wip-contact-section">
-                <button
-                    onClick={onContactClick}
-                    className="wip-contact-btn"
-                    title="Contact"
-                >
-                    Contact
-                </button>
+                <ContactButton onClick={onContactClick} />
             </div>
         </div>
     );

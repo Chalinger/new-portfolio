@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 
+// Import css
+import '../styles/contact.css';
+
 const CopyButton = ({ text }) => {
     const [copied, setCopied] = useState(false);
 

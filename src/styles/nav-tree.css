@@ -1,0 +1,161 @@
+/* =============================================
+   Nav au format arborescence du projet (dans le panneau latéral)
+   ============================================= */
+
+.nav-tree {
+    /* Hauteur d'une ligne de l'arbre : sert aussi à placer les connecteurs */
+    --row: 20px;
+    --branch: 24px;
+    --line: 1.5px solid var(--dark);
+    --muted: color-mix(in srgb, var(--dark) 35%, transparent);
+    --pad-top: 6px;
+    --pad-bottom: 24px;
+    --hint-line: 40px;
+    --hint-gap: -3px;
+    --chevron: 8px;
+
+    /* Hauteur fixe = arbre entièrement déplié (--rows est calculé dans NavTree.jsx) :
+       plier un dossier ne change pas la taille du panneau */
+    box-sizing: border-box;
+    height: calc(var(--pad-top) + var(--hint-line) + var(--hint-gap) + var(--rows) * var(--row) + var(--pad-bottom));
+    max-height: 100%;
+    padding: var(--pad-top) 11px var(--pad-bottom) 30px;
+
+    background: var(--panel-bg);
+    backdrop-filter: blur(6px);
+
+    font-size: 0.6875rem;
+}
+
+.nav-tree-hint {
+    margin: 0 0 var(--hint-gap);
+    text-align: right;
+    font-size: 0.725rem;
+    line-height: var(--hint-line);
+    color: var(--muted);
+}
+
+.nav-tree-root {
+    display: block;
+    line-height: var(--row);
+    font-weight: 700;
+    font-size: 1.33rem;
+    position: relative;
+    left: -5.5px;
+    top: -4px;
+}
+
+.nav-tree-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-tree-item {
+    position: relative;
+    padding-left: calc(var(--branch) + 10px);
+    line-height: var(--row);
+}
+
+/* Branche horizontale (├── / └──) */
+.nav-tree-item::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: var(--branch);
+    height: calc(var(--row) / 2);
+    border-left: var(--line);
+    border-bottom: var(--line);
+}
+
+/* Trait vertical qui continue vers l'élément suivant */
+.nav-tree-item:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    border-left: var(--line);
+}
+
+.nav-tree-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    white-space: nowrap;
+    color: var(--dark);
+}
+
+.nav-tree-label.is-muted {
+    color: var(--muted);
+}
+
+/* Dossiers */
+.nav-tree-folder {
+    font: inherit;
+    line-height: inherit;
+}
+
+button.nav-tree-folder {
+    all: unset;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+button.nav-tree-folder:hover {
+    opacity: 0.6;
+}
+
+.nav-tree-chevron {
+    width: var(--chevron);
+    height: var(--chevron);
+    flex-shrink: 0;
+    transition: transform 0.2s ease;
+}
+
+.nav-tree-folder.is-open .nav-tree-chevron {
+    transform: rotate(90deg);
+}
+
+/* Fichiers ouvrant une pop-up d'aperçu */
+button.nav-tree-preview {
+    all: unset;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+button.nav-tree-preview:hover {
+    opacity: 0.6;
+}
+
+/* Pages */
+.nav-tree-page {
+    font-weight: 700;
+    text-decoration: none;
+    transition: opacity 0.2s;
+}
+
+a.nav-tree-page:hover {
+    opacity: 0.6;
+}
+
+.nav-tree-page.is-unavailable {
+    cursor: not-allowed;
+}
+
+/* Page courante : soulignée */
+.nav-tree-page[aria-current="page"] {
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    text-decoration-thickness: 1px;
+}
+
+.nav-tree a:focus-visible,
+.nav-tree button:focus-visible {
+    outline: 2px solid var(--dark);
+    outline-offset: 2px;
+}

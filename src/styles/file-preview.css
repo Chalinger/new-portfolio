@@ -1,0 +1,50 @@
+/* =============================================
+   Pop-up d'aperçu des fichiers de la nav-tree
+   ============================================= */
+
+.contact-popup.file-preview {
+    max-width: 520px;
+}
+
+.file-preview-image {
+    display: block;
+    width: 100%;
+    max-height: 360px;
+    object-fit: contain;
+}
+
+/* Scène 3D : le canvas Three.js remplit le conteneur */
+.model-viewer {
+    width: 100%;
+    height: 360px;
+    cursor: grab;
+}
+
+.model-viewer:active {
+    cursor: grabbing;
+}
+
+.model-viewer canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+    /* Le glisser sur mobile pilote la caméra au lieu de faire défiler */
+    touch-action: none;
+}
+
+.file-preview-hint {
+    margin: 16px 0 0;
+    text-align: center;
+    font-size: 0.75rem;
+    color: var(--gray);
+}
+
+@media (max-width: 768px) {
+    .file-preview-image {
+        max-height: 260px;
+    }
+
+    .model-viewer {
+        height: 260px;
+    }
+}

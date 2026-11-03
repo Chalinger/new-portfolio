@@ -63,13 +63,15 @@ export const initializeScene = (container) => {
  * @param {THREE.Scene} scene
  * @param {THREE.Camera} camera
  * @param {THREE.WebGLRenderer} renderer
+ * @param {Function} [onFrame] - Appelée à chaque frame avant le rendu (ex : controls.update())
  * @returns {{ stop: Function }} - Objet avec une méthode stop() pour arrêter la boucle
  */
-export const animateScene = (scene, camera, renderer) => {
+export const animateScene = (scene, camera, renderer, onFrame) => {
     let animationId; // On stocke l'ID pour pouvoir annuler la boucle
 
     const animate = () => {
         animationId = requestAnimationFrame(animate);
+        onFrame?.();
         renderer.render(scene, camera);
     };
 
