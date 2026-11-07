@@ -19,6 +19,9 @@
  --gray: #777777;
  --light-gray: #D9D9D9;
  --broken-white: #F2F0EF;
+
+  /* Fond des panneaux latéraux */
+  --panel-bg: color-mix(in srgb, var(--dark) 5%, transparent);
 }
 
 @media (prefers-color-scheme: light) {

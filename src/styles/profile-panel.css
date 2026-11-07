@@ -1,0 +1,192 @@
+/* =============================================
+   Panneau latéral gauche : fil d'Ariane + profil
+   ============================================= */
+
+.profile-panel {
+    position: fixed;
+    top: 50%;
+    left: 124px;
+    transform: translateY(-50%);
+    z-index: 10;
+
+    width: 451px;
+
+    /* Réduction calculée dans useFitScale.js pour tenir dans l'écran.
+       Origine en haut : combiné au translateY(-50%), le panneau reste centré. */
+    scale: var(--panel-scale, 1);
+    transform-origin: left top;
+
+    font-family: var(--font-mono);
+    color: var(--dark);
+
+    animation: profilePanelFadeIn 0.6s ease-out 0.2s both;
+}
+
+/* Fil d'Ariane */
+.breadcrumb {
+    display: flex;
+    gap: 1ch;
+    margin-bottom: 4px;
+    font-size: 0.6875rem;
+    line-height: 16px;
+    color: color-mix(in srgb, var(--dark) 80%, transparent);
+}
+
+.breadcrumb-list {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.breadcrumb-item + .breadcrumb-item::before {
+    content: '\\';
+}
+
+.breadcrumb-link {
+    color: inherit;
+    text-decoration: none;
+    transition: opacity 0.2s;
+}
+
+.breadcrumb-link:hover {
+    opacity: 0.6;
+}
+
+.breadcrumb-link:focus-visible {
+    outline: 2px solid var(--dark);
+    outline-offset: 2px;
+}
+
+/* Carte de profil */
+.profile-card {
+    --pad-x: 24px;
+    /* Retrait supplémentaire des textes et de l'orbite par rapport aux bords */
+    --inset: 12px;
+
+    padding: 18px var(--pad-x) 21px;
+    background: var(--panel-bg);
+    backdrop-filter: blur(6px);
+}
+
+.profile-header {
+    display: flex;
+    align-items: center;
+    gap: 48px;
+}
+
+/* Photo cliquable : ouvre la pop-up d'aperçu */
+.profile-picture-btn {
+    all: unset;
+    flex-shrink: 0;
+    border-radius: 50%;
+    cursor: zoom-in;
+    transition: opacity 0.2s;
+}
+
+.profile-picture-btn:hover {
+    opacity: 0.8;
+}
+
+.profile-picture-btn:focus-visible {
+    outline: 2px solid var(--dark);
+    outline-offset: 4px;
+}
+
+.profile-picture {
+    display: block;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.profile-name {
+    margin: 0;
+    font-size: 1.375rem;
+    font-weight: normal;
+    line-height: 29px;
+    letter-spacing: 0.08em;
+}
+
+.profile-section {
+    padding: 0 var(--inset);
+}
+
+.profile-title {
+    margin: 37px 0 12px;
+    font-size: 1.125rem;
+    line-height: 22px;
+    letter-spacing: 0.05em;
+}
+
+.profile-text {
+    margin: 0;
+    font-size: 0.675rem;
+    line-height: 16px;
+    text-align: justify;
+}
+
+.profile-subtitle {
+    margin: 44px 0 12px;
+    font-size: 0.875rem;
+    line-height: 18px;
+    letter-spacing: 0.05em;
+}
+
+/* Cadre de l'orbite 3D des compétences */
+.profile-skills {
+    box-sizing: border-box;
+    height: 150px;
+    border: 1px solid var(--dark);
+}
+
+/* Scène 3D : le canvas Three.js remplit le cadre */
+.skills-orbit {
+    width: 100%;
+    height: 100%;
+}
+
+.skills-orbit canvas {
+    display: block;
+}
+
+/* Grille 3 × 2 : chaque cellule trace ses bords droit et bas */
+.profile-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    height: 127px;
+    margin-top: 34px;
+    border-top: 1px solid var(--dark);
+    border-left: 1px solid var(--dark);
+}
+
+.profile-grid-cell {
+    border-right: 1px solid var(--dark);
+    border-bottom: 1px solid var(--dark);
+}
+
+@keyframes profilePanelFadeIn {
+    from {
+        opacity: 0;
+        transform: translate(-10px, -50%);
+    }
+
+    to {
+        opacity: 1;
+        transform: translate(0, -50%);
+    }
+}
+
+@media (max-width: 768px) {
+    .profile-panel {
+        left: 16px;
+        width: auto;
+        max-width: calc(100vw - 32px);
+    }
+
+    .profile-header {
+        gap: 24px;
+    }
+}
